@@ -4,7 +4,7 @@ Twitter Analyse der Accounts der Hochschule Düsseldorf und ihrer Konkurenz.
 
 ## Setup
 
-Kopiere die Date `sample.env` zu `.env` und trage dort die Zugangsdaten deines Twitter Developer Accounts ein.
+Kopiere die Datei `sample.env` zu `.env` und trage dort die Zugangsdaten deines Twitter Developer Accounts ein.
 
 ## Follower Download
 
