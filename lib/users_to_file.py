@@ -1,7 +1,8 @@
+import tweepy
 import pandas as pd
 
 
-def users_to_file(users, filename="users"):
+def users_to_file(users: list[tweepy.User], filename="users"):
     data = {
         "id": [data.id for data in users],
         "id_str": [data.id_str for data in users],

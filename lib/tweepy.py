@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def initialize_tweepy():
+def initialize_tweepy() -> tweepy.API:
     auth = tweepy.OAuth1UserHandler(
         os.getenv("TWITTER_CONSUMER_KEY"),
         os.getenv("TWITTER_CONSUMER_SECRET"),
