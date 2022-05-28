@@ -1,11 +1,7 @@
 import sys
 import os
 import tweepy
-import pandas as pd
-from lib import users_to_file
-
-from dotenv import load_dotenv
-load_dotenv()
+from lib import users_to_file, initialize_tweepy
 
 if len(sys.argv) < 2:
     print("Please provide the Twitter username")
@@ -17,14 +13,8 @@ out_dir = "data/followers"
 os.makedirs(out_dir, exist_ok=True)
 out_file = "{}/{}".format(out_dir, username)
 
-auth = tweepy.OAuth1UserHandler(
-    os.getenv("TWITTER_CONSUMER_KEY"),
-    os.getenv("TWITTER_CONSUMER_SECRET"),
-    os.getenv("TWITTER_ACCESS_KEY"),
-    os.getenv("TWITTER_ACCESS_SECRET"),
-)
 
-api = tweepy.API(auth, wait_on_rate_limit=True)
+api = initialize_tweepy()
 
 user = api.get_user(screen_name=username)
 
