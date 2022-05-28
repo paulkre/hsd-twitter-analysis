@@ -28,51 +28,29 @@ user = api.get_user(screen_name=username)
 
 
 def export_data(followers):
-    df = pd.DataFrame(
-        {
-            "id": [data.id for data in followers],
-            "id_str": [data.id_str for data in followers],
-            "name": [data.name for data in followers],
-            "screen_name": [data.screen_name for data in followers],
-            "location": [data.location for data in followers],
-            "description": [data.description for data in followers],
-            "url": [data.url for data in followers],
-            "protected": [data.protected for data in followers],
-            "followers_count": [data.followers_count for data in followers],
-            "friends_count": [data.friends_count for data in followers],
-            "listed_count": [data.listed_count for data in followers],
-            "created_at": [data.created_at for data in followers],
-            "favourites_count": [data.favourites_count for data in followers],
-            "verified": [data.verified for data in followers],
-            "statuses_count": [data.statuses_count for data in followers],
-            "has_extended_profile": [data.has_extended_profile for data in followers],
-            "default_profile": [data.default_profile for data in followers],
-            "default_profile_image": [data.default_profile_image for data in followers],
-            "withheld_in_countries": [",".join(data.withheld_in_countries) for data in followers]
-        },
-        columns=[
-            "id",
-            "id_str",
-            "name",
-            "screen_name",
-            "location",
-            "description",
-            "url",
-            "protected",
-            "followers_count",
-            "friends_count",
-            "listed_count",
-            "created_at",
-            "favourites_count",
-            "verified",
-            "statuses_count",
-            "has_extended_profile",
-            "default_profile",
-            "default_profile_image",
-            "withheld_in_countries",
-        ]
-    )
+    data = {
+        "id": [data.id for data in followers],
+        "id_str": [data.id_str for data in followers],
+        "name": [data.name for data in followers],
+        "screen_name": [data.screen_name for data in followers],
+        "location": [data.location for data in followers],
+        "description": [data.description for data in followers],
+        "url": [data.url for data in followers],
+        "protected": [data.protected for data in followers],
+        "followers_count": [data.followers_count for data in followers],
+        "friends_count": [data.friends_count for data in followers],
+        "listed_count": [data.listed_count for data in followers],
+        "created_at": [data.created_at for data in followers],
+        "favourites_count": [data.favourites_count for data in followers],
+        "verified": [data.verified for data in followers],
+        "statuses_count": [data.statuses_count for data in followers],
+        "has_extended_profile": [data.has_extended_profile for data in followers],
+        "default_profile": [data.default_profile for data in followers],
+        "default_profile_image": [data.default_profile_image for data in followers],
+        "withheld_in_countries": [",".join(data.withheld_in_countries) for data in followers]
+    }
 
+    df = pd.DataFrame(data, columns=data.keys())
     df.to_csv("{}/{}.csv".format(out_dir, username))
     df.to_json("{}/{}.json".format(out_dir, username))
 
