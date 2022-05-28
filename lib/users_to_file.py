@@ -2,7 +2,7 @@ import tweepy
 import pandas as pd
 
 
-def users_to_file(users: list[tweepy.User], filename="users"):
+def users_to_file(users: list[tweepy.User], filename="users", json=False, follower_of=None):
     data = {
         "id": [data.id for data in users],
         "id_str": [data.id_str for data in users],
@@ -24,7 +24,11 @@ def users_to_file(users: list[tweepy.User], filename="users"):
         "default_profile_image": [data.default_profile_image for data in users],
         "withheld_in_countries": [",".join(data.withheld_in_countries) for data in users]
     }
+    if follower_of:
+        data["follower_of"] = follower_of
 
     df = pd.DataFrame(data, columns=data.keys())
-    df.to_csv("{}.csv".format(filename))
-    df.to_json("{}.json".format(filename))
+    df.to_csv("{}.csv".format(filename), index=False)
+    print("> {} users saved to {}.csv".format(len(users), filename))
+    if json:
+        df.to_json("{}.json".format(filename))

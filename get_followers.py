@@ -13,5 +13,6 @@ os.makedirs(out_dir, exist_ok=True)
 out_file = "{}/{}".format(out_dir, username)
 
 api = initialize_tweepy()
-followers = get_followers(api, username, out_file)
-users_to_file(followers, out_file)
+user = api.get_user(screen_name=username)
+followers = get_followers(api, user.id, out_file)
+users_to_file(followers, out_file, json=True, follower_of=user.id)
