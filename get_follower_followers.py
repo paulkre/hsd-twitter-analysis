@@ -2,7 +2,6 @@ import sys
 import os
 from hashlib import md5
 import pandas as pd
-import shutil
 from lib import users_to_file, initialize_tweepy, get_followers
 
 if len(sys.argv) < 2:
@@ -47,4 +46,5 @@ df.to_csv(
     index=False,
 )
 
-shutil.rmtree(cache_dir)
+# import shutil
+# shutil.rmtree(cache_dir)
