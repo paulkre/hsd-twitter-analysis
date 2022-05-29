@@ -15,7 +15,7 @@ start_index = 0 if len(sys.argv) < 3 else int(sys.argv[2])
 out_dir = "data/followers"
 cache_dir = "{}/cache/{}".format(
     out_dir,
-    str(md5(in_file.encode("utf-8")).hexdigest()),
+    str(md5(in_file.encode("utf-8")).hexdigest())[:6],
 )
 os.makedirs(cache_dir, exist_ok=True)
 
