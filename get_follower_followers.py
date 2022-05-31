@@ -33,10 +33,10 @@ df = pd.DataFrame()
 
 for dirent in os.listdir(cache_dir):
     path = os.path.join(cache_dir, dirent)
-    if not os.path.isfile(path):
+    if not os.path.isfile(path) or dirent.startswith("."):
         continue
 
-    file_df = pd.read_csv(path)
+    file_df = pd.read_csv(path, lineterminator='\n')
     df = pd.concat([df, file_df])
 
 df.to_csv(
