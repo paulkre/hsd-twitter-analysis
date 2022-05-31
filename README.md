@@ -21,3 +21,11 @@ Du kannst auch die Follower aller Nutzer in einer CSV Datei herunterladen. Dabei
 ```
 python get_follower_followers.py <data.csv> [start_index]
 ```
+
+## Heruntergeladene Follower sammeln
+
+Mit folgendem Befehl kannst du alle Nutzer, die in `data/followers/*` gespeichert sind, in die Dateien `data/users.csv` und `data/followings.csv` zusammenfassen:
+
+```
+python merge_followers.py
+```
