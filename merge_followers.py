@@ -19,7 +19,10 @@ df[["id", "follower_of"]].sort_values("id", ascending=True).to_csv(
     index=False,
 )
 
-df.drop(["follower_of"], axis=1).drop_duplicates(["id"]).to_csv(
+pd.concat([
+    pd.read_csv("{}/static_users.csv".format(out_dir)),
+    df.drop(["follower_of"], axis=1),
+]).drop_duplicates(["id"]).to_csv(
     "{}/users.csv".format(out_dir),
     index=False,
 )
